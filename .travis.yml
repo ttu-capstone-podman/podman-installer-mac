@@ -1,8 +1,2 @@
-#this is provided in example will delete if unnecessary
-language: ruby
-rvm:
- - 2.2
- - jruby
- 
 #tells travis we are using for MacOS
 os: osx
