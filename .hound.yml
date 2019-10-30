@@ -1,6 +1,9 @@
 fail_on_violations:
   enabled: true
 
+yamllint:
+  enabled: true
+
 flake8:
   enabled: true
 
