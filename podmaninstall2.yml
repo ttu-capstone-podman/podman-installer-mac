@@ -22,7 +22,7 @@
   - name: install homebrew cask applications
     homebrew_cask:
       name: "{{item}}"
-      state: installed
+      state: installed  
     with_items:
      - podman
 
