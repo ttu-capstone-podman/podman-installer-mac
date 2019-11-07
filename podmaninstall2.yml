@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  tasks:
+  
+  - name: install homebrew
+    shell: 'yes | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+    args:
+      creates: /usr/local/bin/brew
+
+  - name: ensure homebrew is updated
+    homebrew:
+      state: latest
+      update_homebrew: yes
+    
+  - name: install homebrew applications
+    homebrew:
+      name: "{{item}}"
+      state: installed
+    with_items:
+     - xhyve
+
+  - name: install homebrew cask applications
+    homebrew_cask:
+      name: "{{item}}"
+      state: installed  
+    with_items:
+     - podman
+
