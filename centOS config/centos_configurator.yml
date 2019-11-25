@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  tasks: 
+  tasks:
 
   - name: install varlink
     become: true
@@ -18,9 +18,7 @@
      line: 'SocketGroup=podman'
 
   - name: start podman service socket
-    shell: 'sudo sstemctl daemon-reload'
-    shell: 'systemd-tmpfiles --create'
-    shell: 'sudo systemctl start io.podman.socket'
+    shell: 'sudo sstemctl daemon-reload' 'systemd-tmpfiles --create' 'sudo systemctl start io.podman.socket'
 
   - name: enable podman service socket
     shell: 'sudo systemctl enable io.podman.socket'
