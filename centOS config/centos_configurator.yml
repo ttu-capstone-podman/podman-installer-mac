@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  tasks: 
+
+  - name: install varlink
+    become: true
+    become_user: root
+    dnf:
+      name: 'libvarlink-util'
+      state: installed
+
+  - name: change socket config
+    become: true
+    become_user: root
+    lineinfile:
+     path:   /etc/systemd/system/sockets.target.wants/io.podman.socket
+     insertafter: '^SocketMode=0600'
+     line: 'SocketGroup=podman'
+
+  - name: start podman service socket
+    shell: 'sudo sstemctl daemon-reload'
+    shell: 'systemd-tmpfiles --create'
+    shell: 'sudo systemctl start io.podman.socket'
+
+  - name: enable podman service socket
+    shell: 'sudo systemctl enable io.podman.socket'
